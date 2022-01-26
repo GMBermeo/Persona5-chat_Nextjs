@@ -1,5 +1,5 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
-import NextNodeServer from 'next/dist/server/next-server';
+//import NextNodeServer from 'next/dist/server/next-server';
 import { useRouter } from 'next/router';
 import React from 'react';
 import appConfig from '../config.json';
@@ -39,7 +39,7 @@ export default function PaginaInicial() {
   // const username//  = 'GMBermeo';
   const [username, setUsername] = React.useState("gmbermeo")
   const roteamento = useRouter();
-  const avatar = document.getElementById('avatar');
+  //const avatar = document.getElementById("avatar");
 
 
   return (
@@ -72,7 +72,7 @@ export default function PaginaInicial() {
             as="form"
             onSubmit={function (infosDoEvento) {
               infosDoEvento.preventDefault();
-              console.log('Alguem submeteu o form')
+              console.log("Alguém submeteu o form")
               // Método tradicional
               // window.location.href = '/chat'
               roteamento.push('/chat');
@@ -83,7 +83,7 @@ export default function PaginaInicial() {
               width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
             }}
           >
-            <Titulo tag="h2">Boas vindas de volta!</Titulo>
+            <Titulo tag="h2">Boas vindes de volta!</Titulo>
             <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
               {appConfig.name}
             </Text>
@@ -91,7 +91,7 @@ export default function PaginaInicial() {
               type="text"
               value={username}
               onChange={function (event) {
-                console.log("usuario digitou", event.target.value)
+                console.log("usuário digitou", event.target.value)
                 // Onde tá o valor?
                 const valor = event.target.value;
                 // Trocar o valor da variável
@@ -104,7 +104,7 @@ export default function PaginaInicial() {
               fullWidth
               value={username}
               onChange={function (event) {
-                console.log("usuario digitou", event.target.value)
+                console.log("usuário digitou", event.target.value)
                 // Onde tá o valor?
                 const valor = event.target.value;
                 // Trocar o valor da variável
@@ -112,12 +112,11 @@ export default function PaginaInicial() {
                 setUsername(valor);
 
 
-                if (username.length < 3) {
-                  avatar.style.visibility = hidden;
-                } else {
-                  avatar.style.visibility = visible;
-                }
-
+                // if (username.length < 3) {
+                //   avatar.style.visibility = "hidden";
+                // } else {
+                //   avatar.style.visibility = "visible";
+                // }
               }}
               textFieldColors={{
                 neutral: {
@@ -128,7 +127,7 @@ export default function PaginaInicial() {
                 },
               }}
             />
-            < Button
+            <Button
               type='submit'
               label='Entrar'
               fullWidth
@@ -164,8 +163,16 @@ export default function PaginaInicial() {
               styleSheet={{
                 borderRadius: '50%',
                 marginBottom: '16px',
+
               }}
               src={`https://github.com/${username}.png`}
+              onChange={function (event) {
+                // Onde tá o valor?
+                const valor = event.target.value;
+                // Trocar o valor da variável
+                // Através do React e avise quem precisa
+                setUsername(valor);
+              }}
             />
             <Text
               variant="body4"
