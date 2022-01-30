@@ -5,6 +5,8 @@ import React from 'react';
 import appConfig from '../config.json';
 
 
+const rotacaoIgual = getRandomArbitrary(-3, 3);
+//console.log(rotacaoIgual);
 
 function Titulo(props) {
   const Tag = props.tag || 'h1';
@@ -48,7 +50,9 @@ export default function PaginaInicial() {
         styleSheet={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           backgroundColor: appConfig.theme.colors.primary[600],
-          backgroundImage: 'url(https://i.ytimg.com/vi/ZJM7ui3ax4w/maxresdefault.jpg)',
+          backgroundImage: 'url(https://pro2-bar-s3-cdn-cf.myportfolio.com/f510fd5c-1d77-47f8-8cbd-ef7e6c4d081f/856ea0a3-62bd-4dbd-8241-40bd71571f0f.jpg?h=309061d13dbcff83fd7e6fe72f110a1d)',
+          // backgroundImage: 'url(https://i.ytimg.com/vi/ZJM7ui3ax4w/maxresdefault.jpg)',
+          // backgroundImage: 'url(https://external-preview.redd.it/e_WvRTzU3h8NRiSkXxtrDzSxL89fFBwXiSA-wTmvSCI.png?auto=webp&s=763b39be53f75339c6e7a95911345175709d2800)',
           backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
         }}
       >
@@ -57,6 +61,7 @@ export default function PaginaInicial() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            border: 'solid white 15px',
             flexDirection: {
               xs: 'column',
               sm: 'row',
@@ -67,6 +72,8 @@ export default function PaginaInicial() {
             margin: '16px',
             boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
             backgroundColor: appConfig.theme.colors.neutrals[100],
+            transform: `rotate(${getRandomArbitrary(-10, 10)}deg)`,
+            boxShadow: '5px 10px 20px rgba(0, 0, 0, 0.5)'
           }}
         >
           {/* Formulário */}
@@ -85,8 +92,9 @@ export default function PaginaInicial() {
               width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
             }}
           >
-            <Titulo tag="h2">Bem vind[] ao metaverso!</Titulo>
-            <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
+            <Titulo tag="h2"
+              styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[200], transform: `rotate(${getRandomArbitrary(-3, 3)}deg)` }}>Bem vind[] ao metaverso!</Titulo>
+            <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[200], transform: `rotate(${getRandomArbitrary(-3, 3)}deg)` }}>
               {appConfig.name}
             </Text>
             {/* <input
@@ -123,10 +131,16 @@ export default function PaginaInicial() {
               textFieldColors={{
                 neutral: {
                   textColor: appConfig.theme.colors.neutrals[500],
-                  mainColor: appConfig.theme.colors.neutrals[500],
-                  mainColorHighlight: appConfig.theme.colors.primary[100],
-                  backgroundColor: appConfig.theme.colors.neutrals[200],
+                  mainColor: appConfig.theme.colors.primary[600],
+                  mainColorHighlight: appConfig.theme.colors.primary[600],
+                  backgroundColor: appConfig.theme.colors.neutrals[100],
                 },
+              }}
+              styleSheet={{
+                //transform: `rotate(${getRandomArbitrary(-3, 3)}deg)`
+                transform: `rotate(${rotacaoIgual}deg)`,
+                borderRadius: 0,
+                borderWidth: '2px',
               }}
             />
             <Button
@@ -134,10 +148,15 @@ export default function PaginaInicial() {
               label='Entrar'
               fullWidth
               buttonColors={{
-                contrastColor: appConfig.theme.colors.neutrals[100],
+                contrastColor: appConfig.theme.colors.neutrals[500],
                 mainColor: appConfig.theme.colors.primary[600],
-                mainColorLight: appConfig.theme.colors.primary[600],
-                mainColorStrong: appConfig.theme.colors.primary[600],
+                mainColorLight: appConfig.theme.colors.primary[300],
+                mainColorStrong: appConfig.theme.colors.primary[400],
+              }}
+              styleSheet={{
+                //transform: `rotate(${getRandomArbitrary(-3, 3)}deg)`
+                transform: `rotate(${rotacaoIgual}deg)`,
+                borderRadius: 0
               }}
             />
           </Box>
@@ -163,9 +182,10 @@ export default function PaginaInicial() {
             <Image
               id="avatar"
               styleSheet={{
-                borderRadius: '1%',
+                borderRadius: '0%',
                 marginBottom: '16px',
-
+                transform: `rotate(${getRandomArbitrary(-6, 6)}deg)`,
+                border: 'solid white 10px'
               }}
               src={`https://github.com/${username}.png`}
               onChange={function (event) {
@@ -180,9 +200,10 @@ export default function PaginaInicial() {
               variant="body4"
               styleSheet={{
                 color: appConfig.theme.colors.neutrals[200],
-                backgroundColor: appConfig.theme.colors.neutrals[900],
+                backgroundColor: appConfig.theme.colors.neutrals[500],
                 padding: '3px 10px',
-                borderRadius: '1000px'
+                borderRadius: '0',
+                transform: `rotate(${getRandomArbitrary(-6, 6)}deg)`
               }}
             >
               {username}
@@ -194,3 +215,20 @@ export default function PaginaInicial() {
     </>
   );
 }
+
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+const fonts = [
+  //9 fontes
+  "Times New Roman, serif",
+  "Cooper Black, serif",
+  "ITC Avant Garde Gothic, Helvetica Neue, sans-serif",
+  "TeX Gyre Adventor, sans-serif",
+  "Clarendon, serif",
+  "Futura, sans-serif",
+  "Helvetica Now Display, Helvetica, sans-serif",
+  "Noto Sans, sans-serif",
+  "Noto Serif, serif"
+]
