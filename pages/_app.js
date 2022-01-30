@@ -6,18 +6,15 @@ function GlobalStyle() {
           padding: 0;
           box-sizing: border-box;
           list-style: none;
-          font-weight: 900;
         }
         body {
           font-family: 'Helvetica', 'Open Sans', sans-serif;
-          font-weight: 900;
         }
 
-        
 
       /* App fit Height */
       html, body, #__next {
-        min-height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex: 1;
         }

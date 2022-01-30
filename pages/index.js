@@ -5,7 +5,7 @@ import React from 'react';
 import appConfig from '../config.json';
 
 
-const rotacaoIgual = getRandomArbitrary(-3, 3);
+const rotacaoIgual = getRandomArbitrary(-6, 6);
 //console.log(rotacaoIgual);
 
 function Titulo(props) {
@@ -53,15 +53,18 @@ export default function PaginaInicial() {
           backgroundImage: 'url(https://pro2-bar-s3-cdn-cf.myportfolio.com/f510fd5c-1d77-47f8-8cbd-ef7e6c4d081f/856ea0a3-62bd-4dbd-8241-40bd71571f0f.jpg?h=309061d13dbcff83fd7e6fe72f110a1d)',
           // backgroundImage: 'url(https://i.ytimg.com/vi/ZJM7ui3ax4w/maxresdefault.jpg)',
           // backgroundImage: 'url(https://external-preview.redd.it/e_WvRTzU3h8NRiSkXxtrDzSxL89fFBwXiSA-wTmvSCI.png?auto=webp&s=763b39be53f75339c6e7a95911345175709d2800)',
-          backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
+          backgroundRepeat: 'repeat-x', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
         }}
       >
         <Box
           styleSheet={{
             display: 'flex',
             alignItems: 'center',
+
             justifyContent: 'space-between',
-            border: 'solid white 15px',
+
+            //border: 'solid white 10px',
+
             flexDirection: {
               xs: 'column',
               sm: 'row',
@@ -70,10 +73,12 @@ export default function PaginaInicial() {
             borderRadius: '0px',
             padding: '32px',
             margin: '16px',
-            boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
+            //boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
             backgroundColor: appConfig.theme.colors.neutrals[100],
-            transform: `rotate(${getRandomArbitrary(-10, 10)}deg)`,
-            boxShadow: '5px 10px 20px rgba(0, 0, 0, 0.5)'
+            //transform: `rotate(${getRandomArbitrary(-10, 10)}deg)`,
+            transform: entortar(-10, 10),
+            boxShadow: '5px 10px 20px rgba(0, 0, 0, 0.5)',
+            border: bordasIrregulares(10, 15)
           }}
         >
           {/* Formulário */}
@@ -81,7 +86,7 @@ export default function PaginaInicial() {
             as="form"
             onSubmit={function (infosDoEvento) {
               infosDoEvento.preventDefault();
-              console.log("Alguém submeteu o form")
+              //console.log("Alguém submeteu o form")
               // Método tradicional
               // window.location.href = '/chat'
               roteamento.push(`/chat?username=${username}`);
@@ -93,8 +98,8 @@ export default function PaginaInicial() {
             }}
           >
             <Titulo tag="h2"
-              styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[200], transform: `rotate(${getRandomArbitrary(-3, 3)}deg)` }}>Bem vind[] ao metaverso!</Titulo>
-            <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[200], transform: `rotate(${getRandomArbitrary(-3, 3)}deg)` }}>
+              styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[200] }}>Bem vind[+]<br />ao イセカイ!</Titulo>
+            <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[200], transform: entortar(-1.5, 1.5) }}>
               {appConfig.name}
             </Text>
             {/* <input
@@ -114,7 +119,7 @@ export default function PaginaInicial() {
               fullWidth
               value={username}
               onChange={function (event) {
-                console.log("usuário digitou", event.target.value)
+                //console.log("usuário digitou", event.target.value)
                 // Onde tá o valor?
                 const valor = event.target.value;
                 // Trocar o valor da variável
@@ -145,7 +150,7 @@ export default function PaginaInicial() {
             />
             <Button
               type='submit'
-              label='Entrar'
+              label='ΞntЯдЯ'
               fullWidth
               buttonColors={{
                 contrastColor: appConfig.theme.colors.neutrals[500],
@@ -184,8 +189,8 @@ export default function PaginaInicial() {
               styleSheet={{
                 borderRadius: '0%',
                 marginBottom: '16px',
-                transform: `rotate(${getRandomArbitrary(-6, 6)}deg)`,
-                border: 'solid white 10px'
+                transform: entortar(-12, 12),
+                border: bordasIrregulares(8, 12),
               }}
               src={`https://github.com/${username}.png`}
               onChange={function (event) {
@@ -203,7 +208,7 @@ export default function PaginaInicial() {
                 backgroundColor: appConfig.theme.colors.neutrals[500],
                 padding: '3px 10px',
                 borderRadius: '0',
-                transform: `rotate(${getRandomArbitrary(-6, 6)}deg)`
+                transform: entortar(-12, 12)
               }}
             >
               {username}
@@ -220,6 +225,12 @@ function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 const fonts = [
   //9 fontes
   "Times New Roman, serif",
@@ -232,3 +243,15 @@ const fonts = [
   "Noto Sans, sans-serif",
   "Noto Serif, serif"
 ]
+
+function entortar(min, max) {
+  return `rotate(${getRandomArbitrary(min, max)}deg)`;
+}
+
+function bordasIrregulares(min, max) {
+  return `solid white ${getRandomInt(min, max)}px`
+  //`border-bottom: '${getRandomInt(min, max)}px,'` +
+  //`border-left: '${getRandomInt(min, max)}px,'` +
+  //`border-top: '${getRandomInt(min, max)}px,'` +
+  //`border-right: '${getRandomInt(min, max)}px'`
+}
