@@ -1,25 +1,25 @@
-import { Box, Button, Text, TextField, Image } from '@skynexui/components';
+import { Box, Button, Text, TextField, Image } from "@skynexui/components";
 //import NextNodeServer from 'next/dist/server/next-server';
-import { useRouter } from 'next/router';
-import React from 'react';
-import appConfig from '../config.json';
+import { useRouter } from "next/router";
+import React from "react";
+import appConfig from "../config.json";
+import { entortar, bordasIrregulares, getRandomArbitrary } from "../src/utils";
 
-
-const rotacaoIgual = getRandomArbitrary(-6, 6);
+const rotacaoIgual = getRandomArbitrary(-8, 8);
 //console.log(rotacaoIgual);
 
 function Titulo(props) {
-  const Tag = props.tag || 'h1';
+  const Tag = props.tag || "h1";
   return (
     <>
       <Tag>{props.children}</Tag>
       <style jsx>{`
-            ${Tag} {
-                color: ${appConfig.theme.colors.neutrals['500']};
-                font-size: 24px;
-                font-weight: 600;
-            }
-            `}</style>
+        ${Tag} {
+          color: ${appConfig.theme.colors.neutrals["500"]};
+          font-size: 24px;
+          font-weight: 600;
+        }
+      `}</style>
     </>
   );
 }
@@ -39,46 +39,48 @@ function Titulo(props) {
 
 export default function PaginaInicial() {
   // const username//  = 'GMBermeo';
-  const [username, setUsername] = React.useState("gmbermeo")
+  const [username, setUsername] = React.useState("gmbermeo");
   const roteamento = useRouter();
   //const avatar = document.getElementById("avatar");
-
 
   return (
     <>
       <Box
         styleSheet={{
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           backgroundColor: appConfig.theme.colors.primary[600],
-          backgroundImage: 'url(https://pro2-bar-s3-cdn-cf.myportfolio.com/f510fd5c-1d77-47f8-8cbd-ef7e6c4d081f/856ea0a3-62bd-4dbd-8241-40bd71571f0f.jpg?h=309061d13dbcff83fd7e6fe72f110a1d)',
+          backgroundImage:
+            "url(https://pro2-bar-s3-cdn-cf.myportfolio.com/f510fd5c-1d77-47f8-8cbd-ef7e6c4d081f/856ea0a3-62bd-4dbd-8241-40bd71571f0f.jpg?h=309061d13dbcff83fd7e6fe72f110a1d)",
           // backgroundImage: 'url(https://i.ytimg.com/vi/ZJM7ui3ax4w/maxresdefault.jpg)',
           // backgroundImage: 'url(https://external-preview.redd.it/e_WvRTzU3h8NRiSkXxtrDzSxL89fFBwXiSA-wTmvSCI.png?auto=webp&s=763b39be53f75339c6e7a95911345175709d2800)',
-          backgroundRepeat: 'repeat-x', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
+          backgroundSize: "cover",
+          backgroundBlendMode: "multiply",
         }}
       >
         <Box
           styleSheet={{
-            display: 'flex',
-            alignItems: 'center',
-
-            justifyContent: 'space-between',
-
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
             //border: 'solid white 10px',
-
             flexDirection: {
-              xs: 'column',
-              sm: 'row',
+              xs: "column",
+              sm: "row",
             },
-            width: '100%', maxWidth: '700px',
-            borderRadius: '0px',
-            padding: '32px',
-            margin: '16px',
-            //boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
+            width: "100%",
+            maxWidth: "700px",
+            borderRadius: "0px",
+            padding: "32px",
+            margin: "16px",
             backgroundColor: appConfig.theme.colors.neutrals[100],
-            //transform: `rotate(${getRandomArbitrary(-10, 10)}deg)`,
             transform: entortar(-10, 10),
-            boxShadow: '5px 10px 20px rgba(0, 0, 0, 0.5)',
-            border: bordasIrregulares(10, 15)
+            boxShadow: "5px 10px 20px rgba(0, 0, 0, 0.5)",
+            borderTop: bordasIrregulares(10, 15),
+            borderRight: bordasIrregulares(10, 20),
+            borderBottom: bordasIrregulares(10, 20),
+            borderLeft: bordasIrregulares(10, 20),
           }}
         >
           {/* Formulário */}
@@ -90,16 +92,36 @@ export default function PaginaInicial() {
               // Método tradicional
               // window.location.href = '/chat'
               roteamento.push(`/chat?username=${username}`);
-
             }}
             styleSheet={{
-              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-              width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              width: { xs: "100%", sm: "50%" },
+              textAlign: "center",
+              marginBottom: "32px",
             }}
           >
-            <Titulo tag="h2"
-              styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[200] }}>Bem vind[+]<br />ao イセカイ!</Titulo>
-            <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[200], transform: entortar(-1.5, 1.5) }}>
+            <Titulo
+              tag="h2"
+              styleSheet={{
+                marginBottom: "32px",
+                color: appConfig.theme.colors.neutrals[200],
+              }}
+            >
+              Bem vind[+]
+              <br />
+              ao イセカイ!
+            </Titulo>
+            <Text
+              variant="body3"
+              styleSheet={{
+                marginBottom: "32px",
+                color: appConfig.theme.colors.neutrals[200],
+                transform: entortar(-1.5, 1.5),
+              }}
+            >
               {appConfig.name}
             </Text>
             {/* <input
@@ -126,7 +148,6 @@ export default function PaginaInicial() {
                 // Através do React e avise quem precisa
                 setUsername(valor);
 
-
                 // if (username.length < 3) {
                 //   avatar.style.visibility = "hidden";
                 // } else {
@@ -145,12 +166,12 @@ export default function PaginaInicial() {
                 //transform: `rotate(${getRandomArbitrary(-3, 3)}deg)`
                 transform: `rotate(${rotacaoIgual}deg)`,
                 borderRadius: 0,
-                borderWidth: '2px',
+                borderWidth: "2px",
               }}
             />
             <Button
-              type='submit'
-              label='ΞntЯдЯ'
+              type="submit"
+              label="ΞntЯдЯ"
               fullWidth
               buttonColors={{
                 contrastColor: appConfig.theme.colors.neutrals[500],
@@ -161,36 +182,39 @@ export default function PaginaInicial() {
               styleSheet={{
                 //transform: `rotate(${getRandomArbitrary(-3, 3)}deg)`
                 transform: `rotate(${rotacaoIgual}deg)`,
-                borderRadius: 0
+                borderRadius: 0,
               }}
             />
           </Box>
           {/* Formulário */}
 
-
           {/* Photo Area */}
           <Box
             styleSheet={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              maxWidth: '200px',
-              padding: '16px',
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              maxWidth: "200px",
+              padding: "16px",
               backgroundColor: appConfig.theme.colors.neutrals[100],
-              border: '1px solid',
+              border: "1px solid",
               borderColor: appConfig.theme.colors.neutrals[100],
-              borderRadius: '10px',
+              borderRadius: "10px",
               flex: 1,
-              minHeight: '240px',
+              minHeight: "240px",
             }}
           >
             <Image
               id="avatar"
               styleSheet={{
-                borderRadius: '0%',
-                marginBottom: '16px',
+                borderRadius: "0%",
+                marginBottom: "16px",
                 transform: entortar(-12, 12),
-                border: bordasIrregulares(8, 12),
+                //border: bordasIrregulares(8, 12),
+                borderTop: bordasIrregulares(10, 12),
+                borderRight: bordasIrregulares(10, 12),
+                borderBottom: bordasIrregulares(10, 12),
+                borderLeft: bordasIrregulares(10, 12),
               }}
               src={`https://github.com/${username}.png`}
               onChange={function (event) {
@@ -206,9 +230,9 @@ export default function PaginaInicial() {
               styleSheet={{
                 color: appConfig.theme.colors.neutrals[200],
                 backgroundColor: appConfig.theme.colors.neutrals[500],
-                padding: '3px 10px',
-                borderRadius: '0',
-                transform: entortar(-12, 12)
+                padding: "3px 10px",
+                borderRadius: "0",
+                transform: entortar(-12, 12),
               }}
             >
               {username}
@@ -219,39 +243,4 @@ export default function PaginaInicial() {
       </Box>
     </>
   );
-}
-
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
-}
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-const fonts = [
-  //9 fontes
-  "Times New Roman, serif",
-  "Cooper Black, serif",
-  "ITC Avant Garde Gothic, Helvetica Neue, sans-serif",
-  "TeX Gyre Adventor, sans-serif",
-  "Clarendon, serif",
-  "Futura, sans-serif",
-  "Helvetica Now Display, Helvetica, sans-serif",
-  "Noto Sans, sans-serif",
-  "Noto Serif, serif"
-]
-
-function entortar(min, max) {
-  return `rotate(${getRandomArbitrary(min, max)}deg)`;
-}
-
-function bordasIrregulares(min, max) {
-  return `solid white ${getRandomInt(min, max)}px`
-  //`border-bottom: '${getRandomInt(min, max)}px,'` +
-  //`border-left: '${getRandomInt(min, max)}px,'` +
-  //`border-top: '${getRandomInt(min, max)}px,'` +
-  //`border-right: '${getRandomInt(min, max)}px'`
 }
