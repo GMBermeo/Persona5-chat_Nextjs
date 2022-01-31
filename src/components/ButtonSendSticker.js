@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Text, Image } from "@skynexui/components";
 import appConfig from "../../config.json";
 import { entortar, bordasIrregulares, getRandomArbitrary } from "../utils";
+import { urlObjectKeys } from "next/dist/shared/lib/utils";
 
 const rotacaoIgualBox = getRandomArbitrary(-12, 12);
 
@@ -43,7 +44,7 @@ export function ButtonSendSticker(props) {
             backgroundColor: appConfig.theme.colors.neutrals[500],
           },
         }}
-        label="gifs"
+        label="GIFS"
         onClick={() => setOpenState(!isOpen)}
       />
 
