@@ -1,3 +1,5 @@
+import React from "react";
+
 export function entortar(min, max) {
   return `rotate(${getRandomArbitrary(min, max)}deg)`;
 }

@@ -29,7 +29,10 @@ export function ButtonSendSticker(props) {
           transform: `rotate(${rotacaoIgualBox}deg)`,
           color: "black",
           fontWeight: "bold",
-          border: "solid black 5px",
+          borderTop: "solid black 4px",
+          borderRight: "solid black 5px",
+          borderBottom: "solid black 6px",
+          borderLeft: "solid black 4px",
           //borderTop: bordasIrregulares(8, 10),
           //borderRight: bordasIrregulares(3, 5),
           //borderBottom: bordasIrregulares(5, 7),
@@ -37,8 +40,7 @@ export function ButtonSendSticker(props) {
           backgroundColor: appConfig.theme.colors.primary[300],
           //filter: isOpen ? 'grayscale(0)' : 'grayscale(1)',
           hover: {
-            backgroundColor: appConfig.theme.colors.primary[600],
-            filter: "grayscale(0)",
+            backgroundColor: appConfig.theme.colors.neutrals[500],
           },
         }}
         label="gifs"
@@ -50,19 +52,22 @@ export function ButtonSendSticker(props) {
           styleSheet={{
             display: "flex",
             flexDirection: "column",
-            borderRadius: "5px",
+            borderRadius: "0",
             position: "absolute",
-            backgroundColor: appConfig.theme.colors.neutrals[800],
+            backgroundColor: appConfig.theme.colors.neutrals[100],
+            borderBottom: `solid ${appConfig.theme.colors.primary[300]} 10px`,
+            transform: "rotate(-1deg)",
             width: {
-              xs: "200px",
+              xs: "80vw",
               sm: "290px",
             },
-            height: "300px",
+            color: "white",
+            height: "700px",
             right: "30px",
             bottom: "30px",
             padding: "16px",
             boxShadow:
-              "rgba(4, 4, 5, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.24) 0px 8px 16px 0px",
+              "rgba(4, 4, 10, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.24) 0px 8px 16px 0px",
           }}
           onClick={() => setOpenState(false)}
         >
@@ -72,7 +77,7 @@ export function ButtonSendSticker(props) {
               fontWeight: "bold",
             }}
           >
-            Stickers
+            Stickers e gifs
           </Text>
           <Box
             tag="ul"
@@ -83,15 +88,16 @@ export function ButtonSendSticker(props) {
               flex: 1,
               paddingTop: "16px",
               overflow: "scroll",
+              overflowX: "hidden",
             }}
           >
             {appConfig.stickers.map((sticker) => (
               <Text
                 onClick={() => {
-                  console.log(
-                    "[DENTRO DO COMPONENTE] Clicou no sticker:",
-                    sticker
-                  );
+                  // console.log(
+                  //   "[DENTRO DO COMPONENTE] Clicou no sticker:",
+                  //   sticker
+                  // );
                   if (Boolean(props.onStickerClick)) {
                     props.onStickerClick(sticker);
                   }
@@ -100,13 +106,13 @@ export function ButtonSendSticker(props) {
                 key={sticker}
                 styleSheet={{
                   width: "50%",
-                  borderRadius: "5px",
+                  borderRadius: "0",
                   padding: "10px",
                   focus: {
-                    backgroundColor: appConfig.theme.colors.neutrals[600],
+                    backgroundColor: appConfig.theme.colors.neutrals[300],
                   },
                   hover: {
-                    backgroundColor: appConfig.theme.colors.neutrals[600],
+                    backgroundColor: appConfig.theme.colors.primary[300],
                   },
                 }}
               >

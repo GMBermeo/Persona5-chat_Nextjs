@@ -4,7 +4,12 @@ import appConfig from "../config.json";
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
 import { ButtonSendSticker } from "../src/components/ButtonSendSticker";
-import { entortar, bordasIrregulares, getRandomArbitrary } from "../src/utils";
+import {
+  entortar,
+  bordasIrregulares,
+  getRandomArbitrary,
+  setBordas,
+} from "../src/utils";
 
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzI5NDk1MiwiZXhwIjoxOTU4ODcwOTUyfQ.R8xVTBpSSeWA4bZMhEO8Y0Mh6mNHxvr7IQJgFknrgZY";
@@ -118,7 +123,7 @@ export default function ChatPage() {
             lg: "60%",
             md: "70%",
             sm: "80%",
-            xs: "100%",
+            xs: "100vw",
           },
           maxHeight: "100vh",
           padding: "32px",
@@ -133,10 +138,11 @@ export default function ChatPage() {
             height: "100%",
             backgroundColor: appConfig.theme.colors.primary[600],
             transform: `rotate(${rotacaoIgualBox}deg)`,
-            borderTop: bordasIrregulares(8, 10),
-            borderRight: bordasIrregulares(3, 5),
-            borderBottom: bordasIrregulares(5, 7),
-            borderLeft: bordasIrregulares(7, 9),
+            borderTop: "solid black 8px",
+            borderRight: "solid black 4px",
+            borderBottom: "solid black 5px",
+            borderLeft: "solid black 7px",
+            // borderTop: setBordas(8, 4, 5, 7),
             borderColor: "black",
             outline: "solid 15px white",
             boxShadow: "25px 25px 50px rgba(0, 0, 0, 1)",
@@ -180,14 +186,20 @@ export default function ChatPage() {
                 resize: "none",
                 borderRadius: "0",
                 padding: "6px 8px",
-                backgroundColor: appConfig.theme.colors.neutrals[100],
+                backgroundColor: appConfig.theme.colors.neutrals[500],
                 marginRight: "12px",
-                color: appConfig.theme.colors.neutrals[500],
-                borderTop: bordasIrregulares(8, 10),
-                borderRight: bordasIrregulares(3, 5),
-                borderBottom: bordasIrregulares(5, 7),
-                borderLeft: bordasIrregulares(7, 9),
-                border: "solid black 15px",
+                color: appConfig.theme.colors.neutrals[100],
+                fontWeight: "bold",
+                borderTop: "solid black 7px",
+                borderRight: "solid black 5px",
+                borderBottom: "solid black 7px",
+                borderLeft: "solid black 9px",
+                focus: {
+                  backgroundColor: appConfig.theme.colors.primary[300],
+                },
+                hover: {
+                  backgroundColor: appConfig.theme.colors.primary[300],
+                },
               }}
             />
             {/* CallBack */}
@@ -232,7 +244,14 @@ function MessageList(props) {
               borderBottom: bordasIrregulares(6, 9),
               borderLeft: bordasIrregulares(7, 9),
               backgroundColor: "black",
-              margin: "15px 60px 0 10px",
+              margin: {
+                sm: "15px 10px 0 40px",
+                xs: "15px 10px 0 30px",
+              },
+              paddingBottom: "25px",
+              alignSelf: "flex-start",
+              paddingRight: "50px",
+              paddingLeft: "50px",
               //boxShadow: "25px 25px 50px rgba(0, 0, 0, 1)",
               // hover: {
               //  backgroundColor: appConfig.theme.colors.neutrals[500],
@@ -243,15 +262,18 @@ function MessageList(props) {
               styleSheet={{
                 display: "block",
                 margin: "auto",
+                alignSelf: "flex-start",
                 backgroundColor: "white",
                 color: "black",
                 transform: entortar(-8, 8),
-                borderTop: bordasIrregulares(6, 9),
-                borderRight: bordasIrregulares(6, 9),
-                borderBottom: bordasIrregulares(6, 9),
-                borderLeft: bordasIrregulares(6, 9),
-                border: "solid black",
-                margin: "0 150px -40px 60px",
+                borderTop: bordasIrregulares(5, 7),
+                borderRight: bordasIrregulares(5, 7),
+                borderBottom: bordasIrregulares(5, 7),
+                borderLeft: bordasIrregulares(5, 7),
+                borderColor: "black",
+                margin: "0 30px -40px -20px",
+                borderRadius: "0",
+                maxWidth: "300px",
               }}
             >
               <Text
@@ -272,7 +294,7 @@ function MessageList(props) {
                 borderRadius: "0",
                 display: "inline-block",
                 //paddingRight: "8px",
-                backgroundColor: appConfig.theme.colors.primary[600],
+                backgroundColor: appConfig.theme.colors.neutrals[100],
                 transform: entortar(-15, 15),
                 borderTop: bordasIrregulares(5, 7),
                 borderRight: bordasIrregulares(5, 7),
@@ -280,6 +302,7 @@ function MessageList(props) {
                 borderLeft: bordasIrregulares(5, 7),
                 borderColor: "black",
                 marginBottom: "30px",
+                marginLeft: "-80px",
               }}
               src={`https://github.com/${mensagem.de}.png`}
             />
@@ -288,9 +311,10 @@ function MessageList(props) {
               <Image
                 src={mensagem.texto.replace(":sticker:", "")}
                 styleSheet={{
-                  height: "200px",
+                  // height: "200px",
                   margin: "auto",
-                  marginBottom: "20px",
+                  marginTop: "-30px",
+                  objectFit: "contain",
                 }}
               />
             ) : (
@@ -298,8 +322,11 @@ function MessageList(props) {
                 styleSheet={{
                   fontWeight: "bold",
                   marginTop: "-20px",
-                  marginBottom: "20px",
                   marginLeft: "20px",
+                  paddingBottom: "50px",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  alignSelf: "flex-start",
                 }}
               >
                 {mensagem.texto}

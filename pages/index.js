@@ -5,7 +5,8 @@ import React from "react";
 import appConfig from "../config.json";
 import { entortar, bordasIrregulares, getRandomArbitrary } from "../src/utils";
 
-const rotacaoIgual = getRandomArbitrary(-8, 8);
+const rotacaoIgual = getRandomArbitrary(-5, 5);
+const rotacaoBox = getRandomArbitrary(-10, 10);
 //console.log(rotacaoIgual);
 
 function Titulo(props) {
@@ -75,7 +76,7 @@ export default function PaginaInicial() {
             padding: "32px",
             margin: "16px",
             backgroundColor: appConfig.theme.colors.neutrals[100],
-            transform: entortar(-10, 10),
+            transform: `rotate(${rotacaoBox}deg)`,
             boxShadow: "5px 10px 20px rgba(0, 0, 0, 0.5)",
             borderTop: bordasIrregulares(10, 15),
             borderRight: bordasIrregulares(10, 20),
@@ -119,7 +120,7 @@ export default function PaginaInicial() {
               styleSheet={{
                 marginBottom: "32px",
                 color: appConfig.theme.colors.neutrals[200],
-                transform: entortar(-1.5, 1.5),
+                transform: React.memo(entortar(-1.5, 1.5)),
               }}
             >
               {appConfig.name}
