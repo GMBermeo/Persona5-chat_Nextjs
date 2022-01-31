@@ -19,7 +19,7 @@ const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const rotacaoIgualAvatar = getRandomArbitrary(-12, 12);
 const rotacaoIgualMensagem = getRandomArbitrary(-8, 8);
 const rotacaoIgualRemetente = getRandomArbitrary(-4, 4);
-const rotacaoIgualBox = getRandomArbitrary(-4, 4);
+const rotacaoIgualBox = getRandomArbitrary(-6, 6);
 
 function escutaMensagensEmTempoReal(adicionaMensagem) {
   return supabaseClient
