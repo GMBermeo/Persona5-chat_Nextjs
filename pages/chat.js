@@ -120,9 +120,9 @@ export default function ChatPage() {
           backgroundColor: appConfig.theme.colors.neutrals[700],
           height: "100%",
           maxWidth: {
-            lg: "60%",
-            md: "70%",
-            sm: "80%",
+            lg: "70vw",
+            md: "80vw",
+            sm: "90vw",
             xs: "100vw",
           },
           maxHeight: "100vh",
@@ -315,6 +315,7 @@ function MessageList(props) {
                   margin: "auto",
                   marginTop: "-30px",
                   objectFit: "contain",
+                  maxHeight: "200px",
                 }}
               />
             ) : (
