@@ -53,7 +53,7 @@ export default function PaginaInicial() {
           justifyContent: "center",
           backgroundColor: appConfig.theme.colors.primary[600],
           backgroundImage:
-            "url(https://pro2-bar-s3-cdn-cf.myportfolio.com/f510fd5c-1d77-47f8-8cbd-ef7e6c4d081f/856ea0a3-62bd-4dbd-8241-40bd71571f0f.jpg?h=309061d13dbcff83fd7e6fe72f110a1d)",
+            "url(https://github.com/GMBermeo/imersao-react-2022/blob/main/src/backgroundlogin.jpeg?raw=true)",
           // backgroundImage: 'url(https://i.ytimg.com/vi/ZJM7ui3ax4w/maxresdefault.jpg)',
           // backgroundImage: 'url(https://external-preview.redd.it/e_WvRTzU3h8NRiSkXxtrDzSxL89fFBwXiSA-wTmvSCI.png?auto=webp&s=763b39be53f75339c6e7a95911345175709d2800)',
           backgroundSize: "cover",
