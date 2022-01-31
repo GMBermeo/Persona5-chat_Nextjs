@@ -324,7 +324,7 @@ function MessageList(props) {
                   fontWeight: "bold",
                   marginTop: "-20px",
                   marginLeft: "20px",
-                  paddingBottom: "50px",
+                  paddingBottom: "5px",
                   alignItems: "center",
                   justifyContent: "center",
                   alignSelf: "flex-start",
