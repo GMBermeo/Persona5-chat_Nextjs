@@ -11,6 +11,11 @@ const SUPABASE_ANON_KEY =
 const SUPABASE_URL = "https://yxbjwwtdehrtaludhubj.supabase.co";
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+const rotacaoIgualAvatar = getRandomArbitrary(-12, 12);
+const rotacaoIgualMensagem = getRandomArbitrary(-8, 8);
+const rotacaoIgualRemetente = getRandomArbitrary(-4, 4);
+const rotacaoIgualBox = getRandomArbitrary(-4, 4);
+
 function escutaMensagensEmTempoReal(adicionaMensagem) {
   return supabaseClient
     .from("mensagens")
@@ -94,12 +99,11 @@ export default function ChatPage() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: appConfig.theme.colors.primary[100],
-        backgroundImage: `url(https://i.ytimg.com/vi/ZJM7ui3ax4w/maxresdefault.jpg)`,
-        backgroundRepeat: "no-repeat",
+        backgroundImage:
+          "url(https://external-preview.redd.it/e_WvRTzU3h8NRiSkXxtrDzSxL89fFBwXiSA-wTmvSCI.png?auto=webp&s=763b39be53f75339c6e7a95911345175709d2800)",
         backgroundSize: "cover",
-        backgroundBlendMode: "multiply",
-        color: appConfig.theme.colors.neutrals[500],
+        backgroundPosition: "center",
+        paddingTop: "0",
       }}
     >
       <Box
@@ -107,25 +111,37 @@ export default function ChatPage() {
           display: "flex",
           flexDirection: "column",
           flex: 1,
-          boxShadow: "0 2px 10px 0 rgb(0 0 0 / 20%)",
           borderRadius: "5px",
           backgroundColor: appConfig.theme.colors.neutrals[700],
           height: "100%",
-          maxWidth: "95%",
-          maxHeight: "95vh",
+          maxWidth: {
+            lg: "60%",
+            md: "70%",
+            sm: "80%",
+            xs: "100%",
+          },
+          maxHeight: "100vh",
           padding: "32px",
         }}
       >
-        <Header />
         <Box
           styleSheet={{
             position: "relative",
             display: "flex",
             flex: 1,
-            height: "80%",
-            backgroundColor: appConfig.theme.colors.neutrals[600],
+            marginTop: "-20px",
+            height: "100%",
+            backgroundColor: appConfig.theme.colors.primary[600],
+            transform: `rotate(${rotacaoIgualBox}deg)`,
+            borderTop: bordasIrregulares(8, 10),
+            borderRight: bordasIrregulares(3, 5),
+            borderBottom: bordasIrregulares(5, 7),
+            borderLeft: bordasIrregulares(7, 9),
+            borderColor: "black",
+            outline: "solid 15px white",
+            boxShadow: "25px 25px 50px rgba(0, 0, 0, 1)",
             flexDirection: "column",
-            borderRadius: "5px",
+            borderRadius: "0",
             padding: "16px",
           }}
         >
@@ -162,19 +178,22 @@ export default function ChatPage() {
                 width: "100%",
                 border: "0",
                 resize: "none",
-                borderRadius: "5px",
+                borderRadius: "0",
                 padding: "6px 8px",
-                backgroundColor: appConfig.theme.colors.neutrals[800],
+                backgroundColor: appConfig.theme.colors.neutrals[100],
                 marginRight: "12px",
-                color: appConfig.theme.colors.neutrals[200],
+                color: appConfig.theme.colors.neutrals[500],
+                borderTop: bordasIrregulares(8, 10),
+                borderRight: bordasIrregulares(3, 5),
+                borderBottom: bordasIrregulares(5, 7),
+                borderLeft: bordasIrregulares(7, 9),
+                border: "solid black 15px",
               }}
             />
             {/* CallBack */}
             <ButtonSendSticker
               onStickerClick={(sticker) => {
-                console.log(
-                  "[USANDO O COMPONENTE] Salva esse sticker no banco"
-                );
+                // console.log("[USANDO O COMPONENTE] Salva esse sticker no banco");
                 handleNovaMensagem(":sticker:" + sticker);
               }}
             />
@@ -185,30 +204,6 @@ export default function ChatPage() {
   );
 }
 
-function Header() {
-  return (
-    <>
-      <Box
-        styleSheet={{
-          width: "100%",
-          marginBottom: "16px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Text variant="heading5">Chat</Text>
-        <Button
-          variant="tertiary"
-          colorVariant="neutral"
-          label="Logout"
-          href="/"
-        />
-      </Box>
-    </>
-  );
-}
-
 function MessageList(props) {
   //console.log(props);
   return (
@@ -216,10 +211,11 @@ function MessageList(props) {
       tag="ul"
       styleSheet={{
         overflow: "scroll",
+        overflowX: "hidden",
         display: "flex",
         flexDirection: "column-reverse",
         flex: 1,
-        color: appConfig.theme.colors.neutrals["000"],
+        color: appConfig.theme.colors.neutrals["500"],
         marginBottom: "16px",
       }}
     >
@@ -229,46 +225,85 @@ function MessageList(props) {
             key={mensagem.id}
             tag="li"
             styleSheet={{
-              borderRadius: "5px",
-              padding: "6px",
-              marginBottom: "12px",
-              hover: {
-                backgroundColor: appConfig.theme.colors.neutrals[700],
-              },
+              borderRadius: "0",
+              transform: entortar(-2, 2),
+              borderTop: bordasIrregulares(6, 9),
+              borderRight: bordasIrregulares(8, 10),
+              borderBottom: bordasIrregulares(6, 9),
+              borderLeft: bordasIrregulares(7, 9),
+              backgroundColor: "black",
+              margin: "15px 60px 0 10px",
+              //boxShadow: "25px 25px 50px rgba(0, 0, 0, 1)",
+              // hover: {
+              //  backgroundColor: appConfig.theme.colors.neutrals[500],
+              //},
             }}
           >
             <Box
               styleSheet={{
-                marginBottom: "8px",
+                display: "block",
+                margin: "auto",
+                backgroundColor: "white",
+                color: "black",
+                transform: entortar(-8, 8),
+                borderTop: bordasIrregulares(6, 9),
+                borderRight: bordasIrregulares(6, 9),
+                borderBottom: bordasIrregulares(6, 9),
+                borderLeft: bordasIrregulares(6, 9),
+                border: "solid black",
+                margin: "0 150px -40px 60px",
               }}
             >
-              <Image
-                styleSheet={{
-                  width: "20px",
-                  height: "20px",
-                  borderRadius: "50%",
-                  display: "inline-block",
-                  marginRight: "8px",
-                }}
-                src={`https://github.com/${mensagem.de}.png`}
-              />
-              <Text tag="strong">{mensagem.de}</Text>
               <Text
+                tag="strong"
                 styleSheet={{
-                  fontSize: "10px",
-                  marginLeft: "8px",
-                  color: appConfig.theme.colors.neutrals[300],
+                  fontWeight: "bold",
+                  margin: "4px 6px 4px 6px",
                 }}
-                tag="span"
               >
-                {new Date().toLocaleDateString()}
+                {mensagem.de}
               </Text>
             </Box>
+            <Image
+              //Avatar do perfil
+              styleSheet={{
+                width: "60px",
+                height: "60px",
+                borderRadius: "0",
+                display: "inline-block",
+                //paddingRight: "8px",
+                backgroundColor: appConfig.theme.colors.primary[600],
+                transform: entortar(-15, 15),
+                borderTop: bordasIrregulares(5, 7),
+                borderRight: bordasIrregulares(5, 7),
+                borderBottom: bordasIrregulares(5, 7),
+                borderLeft: bordasIrregulares(5, 7),
+                borderColor: "black",
+                marginBottom: "30px",
+              }}
+              src={`https://github.com/${mensagem.de}.png`}
+            />
             {/* Declarativo */}
             {mensagem.texto.startsWith(":sticker:") ? (
-              <Image src={mensagem.texto.replace(":sticker:", "")} />
+              <Image
+                src={mensagem.texto.replace(":sticker:", "")}
+                styleSheet={{
+                  height: "200px",
+                  margin: "auto",
+                  marginBottom: "20px",
+                }}
+              />
             ) : (
-              mensagem.texto
+              <Text
+                styleSheet={{
+                  fontWeight: "bold",
+                  marginTop: "-20px",
+                  marginBottom: "20px",
+                  marginLeft: "20px",
+                }}
+              >
+                {mensagem.texto}
+              </Text>
             )}
             {/* if mensagem de texto possui stickers:
                            mostra a imagem
