@@ -149,6 +149,14 @@ export default function ChatPage() {
             flexDirection: "column",
             borderRadius: "0",
             padding: "16px",
+            //backgroundColor: "yellow",
+            // backgroundImage:
+            //   "url(https://pro2-bar-s3-cdn-cf.myportfolio.com/f510fd5c-1d77-47f8-8cbd-ef7e6c4d081f/856ea0a3-62bd-4dbd-8241-40bd71571f0f.jpg?h=309061d13dbcff83fd7e6fe72f110a1d)",
+            backgroundImage:
+              "url(https://github.com/GMBermeo/imersao-react-2022/blob/main/src/background.jpeg?raw=true)",
+            // backgroundImage: 'url(https://external-preview.redd.it/e_WvRTzU3h8NRiSkXxtrDzSxL89fFBwXiSA-wTmvSCI.png?auto=webp&s=763b39be53f75339c6e7a95911345175709d2800)',
+            backgroundSize: "cover",
+            backgroundBlendMode: "multiply",
           }}
         >
           <MessageList mensagens={listaDeMensagens} />
@@ -265,7 +273,7 @@ function MessageList(props) {
                 alignSelf: "flex-start",
                 backgroundColor: "white",
                 color: "black",
-                transform: entortar(-8, 8),
+                transform: entortar(-6, 6),
                 borderTop: bordasIrregulares(5, 7),
                 borderRight: bordasIrregulares(5, 7),
                 borderBottom: bordasIrregulares(5, 7),
@@ -316,6 +324,7 @@ function MessageList(props) {
                   marginTop: "-30px",
                   objectFit: "contain",
                   maxHeight: "200px",
+                  transform: entortar(-2, 2),
                 }}
               />
             ) : (
