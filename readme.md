@@ -12,16 +12,15 @@ This was my first experience with React.
 - [screenshots](#screenshots)
 
 ### live site
-- [imersao-react-2022.vercel.app](https://imersao-react-2022.vercel.app/)
+- [imersao-react-2022.vercel.app](https://imersao-react-2022.vercel.app)
 
-### built with
-- React
-- Next.js
-- SkynexUI
-- Supabase
-- Vercel
-- CSS
-- HTML5
+## tech used
+
+<p align="justify">
+  
+![React](https://img.shields.io/badge/react-%230d1117.svg?style=for-the-badge&logo=react) ![Next](https://img.shields.io/badge/Next-%230d1117?style=for-the-badge&logo=next.js) ![SkynexUI](https://img.shields.io/badge/skynex-%230d1117.svg?style=for-the-badge&logo=react&logoColor=orange) ![Supabase](https://img.shields.io/badge/Supabase-%230d1117?style=for-the-badge&logo=supabase) ![Deployed on Vercel](https://img.shields.io/badge/vercel-%230d1117?style=for-the-badge&logo=vercel&logoColor=white) 
+  
+</p>
 
 ### mentors
 - Mario Souto - [@omariosouto](https://github.com/omariosouto)
